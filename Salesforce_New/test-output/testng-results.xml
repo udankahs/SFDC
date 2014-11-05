@@ -2,25 +2,26 @@
 <testng-results skipped="0" failed="1" total="1" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="56308" started-at="2014-11-03T14:09:50Z" finished-at="2014-11-03T14:10:46Z">
+  <suite name="Default suite" duration-ms="101564" started-at="2014-11-05T16:13:09Z" finished-at="2014-11-05T16:14:51Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="56308" started-at="2014-11-03T14:09:50Z" finished-at="2014-11-03T14:10:46Z">
+    <test name="Default test" duration-ms="101564" started-at="2014-11-05T16:13:09Z" finished-at="2014-11-05T16:14:51Z">
       <class name="com.sfdc.scripts.SFDC_AccountVerification">
-        <test-method status="PASS" signature="preCondition()[pri:0, instance:com.sfdc.scripts.SFDC_AccountVerification@165391b]" name="preCondition" is-config="true" duration-ms="12455" started-at="2014-11-03T19:39:50Z" finished-at="2014-11-03T19:40:02Z">
+        <test-method status="PASS" signature="preCondition()[pri:0, instance:com.sfdc.scripts.SFDC_AccountVerification@131b810]" name="preCondition" is-config="true" duration-ms="27483" started-at="2014-11-05T21:43:09Z" finished-at="2014-11-05T21:43:36Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- preCondition -->
-        <test-method status="FAIL" signature="testSFDC_CreateAccount()[pri:0, instance:com.sfdc.scripts.SFDC_AccountVerification@165391b]" name="testSFDC_CreateAccount" duration-ms="43823" started-at="2014-11-03T19:40:02Z" finished-at="2014-11-03T19:40:46Z">
-          <exception class="java.lang.IllegalArgumentException">
+        <test-method status="FAIL" signature="testSFDC_CreateAccount()[pri:0, instance:com.sfdc.scripts.SFDC_AccountVerification@131b810]" name="testSFDC_CreateAccount" duration-ms="74009" started-at="2014-11-05T21:43:36Z" finished-at="2014-11-05T21:44:51Z">
+          <exception class="java.io.IOException">
             <message>
-              <![CDATA[Your InputStream was neither an OLE2 stream, nor an OOXML stream]]>
+              <![CDATA[Destination 'C:\Users\sharath\Desktop' directory cannot be created]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.IllegalArgumentException: Your InputStream was neither an OLE2 stream, nor an OOXML stream
-	at org.apache.poi.ss.usermodel.WorkbookFactory.create(WorkbookFactory.java:75)
-	at com.sfdc.pom.AccountDetailPage.AccountDetailVerification(AccountDetailPage.java:68)
-	at com.sfdc.scripts.SFDC_AccountVerification.testSFDC_CreateAccount(SFDC_AccountVerification.java:79)
+              <![CDATA[java.io.IOException: Destination 'C:\Users\sharath\Desktop' directory cannot be created
+	at org.apache.commons.io.FileUtils.copyFile(FileUtils.java:1085)
+	at org.apache.commons.io.FileUtils.copyFile(FileUtils.java:1038)
+	at com.sfdc.pom.AccountDetailPage.AccountDetailVerification(AccountDetailPage.java:109)
+	at com.sfdc.scripts.SFDC_AccountVerification.testSFDC_CreateAccount(SFDC_AccountVerification.java:84)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -47,7 +48,7 @@
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.IllegalArgumentException -->
+          </exception> <!-- java.io.IOException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSFDC_CreateAccount -->
