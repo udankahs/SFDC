@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class BasePage 
 {
-	String xlPath ="D:/Selenium/Workspace/Udanka/test data_Final.xlsx";
+	String xlPath ="D:/Selenium/test data_Final.xlsx";
 	
 	@FindBy(xpath="//a[contains(text(),'My Accounts')]")
 	private WebElement myAccounts;

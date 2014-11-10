@@ -24,7 +24,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class AccountDetailPage extends BasePage {
+public class MyTerritorySection extends BasePage {
 	private WebDriver driver;
 
 	static Row rownum1;
@@ -45,23 +45,22 @@ public class AccountDetailPage extends BasePage {
 	@FindBy(xpath = ".//td[text()='Account Record Type']/../td[4]")
 	private WebElement AccountRecordType;
 
-	@FindBy(xpath = ".//h2[text()='Account Detail']")
-	private WebElement AccountDetail;
+	@FindBy(xpath = ".//h3[text()='My Territory']")
+	private WebElement MyTerritory;
 
-	public AccountDetailPage(WebDriver driver) {
+	public MyTerritorySection(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
 		this.driver = driver;
 	}
 
-	public void AccountDetailVerification(String AccountName, String xlPath,
-			int j) throws InterruptedException, IOException,
+	public void MyTerritorySectionVerification(String AccountName, String xlPath, int j) throws InterruptedException, IOException,
 			InvalidFormatException {
 
 		FileInputStream fis = new FileInputStream(xlPath);
 
 		Workbook wb = WorkbookFactory.create(fis);
-		Sheet s1 = wb.getSheet("Fields Repository");
+		Sheet s1 = wb.getSheet("My Territory");
 
 		exit_loop = 0;
 		exec_end = 0;
@@ -91,10 +90,9 @@ public class AccountDetailPage extends BasePage {
 		// if(exec_end!=5)
 		// {
 
-		driver.findElement(By.xpath(".//*[@id='bodyCell']/div[3]"));
+		//driver.findElement(By.xpath(".//*[@id='bodyCell']/div[3]"));
 
-		((JavascriptExecutor) driver).executeScript(
-				"arguments[0].style.backgroundColor='yellow';", AccountDetail);
+		((JavascriptExecutor) driver).executeScript("arguments[0].style.backgroundColor='yellow';", MyTerritory);
 
 		AccountRecordType.click();
 
@@ -132,7 +130,10 @@ public class AccountDetailPage extends BasePage {
 		} while (iterator1.hasNext());
 
 		System.out.println("AccountName" + AccountName);
-
+		
+		
+		
+		
 		do {
 
 			rownum1 = (Row) s1.getRow(i);
@@ -146,6 +147,11 @@ public class AccountDetailPage extends BasePage {
 			}
 
 			if (exit_loop < 1) {
+				
+				
+				driver.switchTo().defaultContent();
+				
+				driver.switchTo().frame("01NA0000000aPXw");
 
 				driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 				try {
@@ -157,21 +163,11 @@ public class AccountDetailPage extends BasePage {
 				} catch (NoSuchElementException fd)
 
 				{
-
-					try {
-
-						String ab = driver.findElement(
-								By.xpath("//span[(text()='" + Field_Name+ "')]")).getText();
-						System.out.println("The field " + ab+ "is present in the page");
-						rownum1.createCell(j).setCellValue("PASS");
-					} catch (NoSuchElementException sd)
-
-					{
 						System.out.println("The field " + Field_Name+ " is not present in the page");
 						rownum1.createCell(j).setCellValue("FAIL");
 					}
 				}
-			}
+			
 			i++;
 		} while (exit_loop != 5);
 

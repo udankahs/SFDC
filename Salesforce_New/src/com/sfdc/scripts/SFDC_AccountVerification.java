@@ -16,6 +16,7 @@ import com.sfdc.pom.BasePage;
 import com.sfdc.pom.AccountDetailPage;
 import com.sfdc.pom.GotoAccountDetailPage;
 import com.sfdc.pom.LoginPage;
+import com.sfdc.pom.MyTerritorySection;
 
 public class SFDC_AccountVerification extends SuperTestNG {
 	@Test
@@ -23,7 +24,7 @@ public class SFDC_AccountVerification extends SuperTestNG {
 			NullPointerException, InvalidFormatException, IOException {
 		LoginPage loginPage = new LoginPage(driver);
 		BasePage basePage = new BasePage(driver);
-		String xlPath = "C:/Users/udanka/workspace/test data_Final.xlsx";
+		String xlPath = "D:/Selenium/test data/test data_Final.xlsx";
 
 		int rowCount = ExcelLib.getRowCount(xlPath,
 				"Login and Expected Accounts");
@@ -55,8 +56,7 @@ public class SFDC_AccountVerification extends SuperTestNG {
 
 					basePage.goToMyAccounts();
 
-					GotoAccountDetailPage gotoPage = new GotoAccountDetailPage(
-							driver);
+					GotoAccountDetailPage gotoPage = new GotoAccountDetailPage(driver);
 					gotoPage.gotoAccountDetail();
 
 					// String xp = "//a[contains(text(),'" + accountName +
@@ -70,17 +70,17 @@ public class SFDC_AccountVerification extends SuperTestNG {
 						temp = 0;
 						try {
 
-							WebElement account = wait.until(ExpectedConditions
-									.elementToBeClickable(((By
-											.xpath("//a[text()='" + accountName
-													+ "']")))));
+							WebElement account = wait.until(ExpectedConditions.elementToBeClickable(((By.xpath("//a[text()='" + accountName	+ "']")))));
 
 							actions.moveToElement(account);
 							actions.click();
 							actions.perform();
 
-							AccountDetailPage temp1 = new AccountDetailPage(driver);
-							temp1.AccountDetailVerification(accountName,xlPath, j);
+							AccountDetailPage accountVerification = new AccountDetailPage(driver);
+							accountVerification.AccountDetailVerification(accountName, xlPath, j);
+							
+							MyTerritorySection territoryVerification = new MyTerritorySection(driver);
+							territoryVerification.MyTerritorySectionVerification(accountName, xlPath, j);
 
 						} catch (TimeoutException e) {
 							temp = 5;
@@ -88,6 +88,8 @@ public class SFDC_AccountVerification extends SuperTestNG {
 						}
 					} while (temp == 5);
 
+					
+					
 				}
 
 				basePage.logout();
