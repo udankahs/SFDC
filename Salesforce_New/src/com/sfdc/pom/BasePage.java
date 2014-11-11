@@ -9,6 +9,8 @@ public class BasePage
 {
 	String xlPath ="D:/Selenium/test data_Final.xlsx";
 	
+	private WebDriver driver;
+	
 	@FindBy(xpath="//a[contains(text(),'My Accounts')]")
 	private WebElement myAccounts;
 	
@@ -25,6 +27,7 @@ public class BasePage
 	{
 		super();
 		PageFactory.initElements(driver,this);
+		this.driver = driver;
 	}
 	
 	public void mySettings()
@@ -34,6 +37,7 @@ public class BasePage
 	
 	public void goToMyAccounts()
 	{
+		driver.switchTo().defaultContent();
 		myAccounts.click();
 	}
 	

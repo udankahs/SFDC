@@ -67,30 +67,10 @@ public class MyTerritorySection extends BasePage {
 		int i = 0;
 
 		row_account = s1.getRow(i);
-		/*
-		 * if(counter>0) {
-		 * 
-		 * driver.findElement(By.xpath("//a[contains(text(), 'My Accounts')]")).
-		 * click();
-		 * 
-		 * driver.switchTo().frame("itarget");
-		 * 
-		 * }
-		 */
 
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
 		j++;
-
-		// try {
-		// Account_Name
-		// =row_account.getCell(j).getStringCellValue();}catch(NullPointerException
-		// fsf){exec_end=5;}
-
-		// if(exec_end!=5)
-		// {
-
-		//driver.findElement(By.xpath(".//*[@id='bodyCell']/div[3]"));
 
 		((JavascriptExecutor) driver).executeScript("arguments[0].style.backgroundColor='yellow';", MyTerritory);
 
@@ -98,8 +78,7 @@ public class MyTerritorySection extends BasePage {
 
 		String Account_record_type = AccountRecordType.getText();
 
-		File scrFile = ((TakesScreenshot) driver)
-				.getScreenshotAs(OutputType.FILE);
+		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
 		String filepath = "D://Selenium//Screenshots" + AccountName+ ".png";
 
@@ -155,8 +134,7 @@ public class MyTerritorySection extends BasePage {
 
 				driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 				try {
-					String ab = driver.findElement(
-							By.xpath("//td[(text()='" + Field_Name + "')]")).getText();
+					String ab = driver.findElement(By.xpath("//label[(text()='" + Field_Name + "')]")).getText();
 					System.out.println("The field " + ab+ "is present in the page");
 					rownum1.createCell(j).setCellValue("PASS");
 
