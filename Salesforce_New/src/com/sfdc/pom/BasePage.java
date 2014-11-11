@@ -7,8 +7,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class BasePage 
 {
-	String xlPath ="D:/Selenium/test data_Final.xlsx";
-	
 	private WebDriver driver;
 	
 	@FindBy(xpath="//a[contains(text(),'My Accounts')]")

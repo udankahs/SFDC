@@ -25,6 +25,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class MyTerritorySection extends BasePage {
+	
 	private WebDriver driver;
 
 	static Row rownum1;
@@ -35,12 +36,6 @@ public class MyTerritorySection extends BasePage {
 
 	int exit_loop = 0;
 	int exec_end = 0;
-
-	@FindBy(id = "vwid")
-	private WebElement View;
-
-	@FindBy(xpath = "//img[@id='rpp_selectorArrow']")
-	private WebElement RightArrow;
 
 	@FindBy(xpath = ".//td[text()='Account Record Type']/../td[4]")
 	private WebElement AccountRecordType;
@@ -54,8 +49,7 @@ public class MyTerritorySection extends BasePage {
 		this.driver = driver;
 	}
 
-	public void MyTerritorySectionVerification(String AccountName, String xlPath, int j) throws InterruptedException, IOException,
-			InvalidFormatException {
+	public void MyTerritorySectionVerification(String AccountName,String xlPath, int j) throws InterruptedException, IOException,InvalidFormatException {
 
 		FileInputStream fis = new FileInputStream(xlPath);
 
@@ -72,7 +66,8 @@ public class MyTerritorySection extends BasePage {
 
 		j++;
 
-		((JavascriptExecutor) driver).executeScript("arguments[0].style.backgroundColor='yellow';", MyTerritory);
+		((JavascriptExecutor) driver).executeScript(
+				"arguments[0].style.backgroundColor='yellow';", MyTerritory);
 
 		AccountRecordType.click();
 
@@ -80,7 +75,7 @@ public class MyTerritorySection extends BasePage {
 
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
-		String filepath = "D://Selenium//Screenshots" + AccountName+ ".png";
+		String filepath = "D://Selenium//Screenshots" + AccountName + ".png";
 
 		FileUtils.copyFile(scrFile, new File(filepath));
 
@@ -108,51 +103,42 @@ public class MyTerritorySection extends BasePage {
 			}
 		} while (iterator1.hasNext());
 
-		System.out.println("AccountName" + AccountName);
-		
-		
-		
-		
+
 		do {
 
 			rownum1 = (Row) s1.getRow(i);
 			try {
 				Field_Name = rownum1.getCell(1).getStringCellValue();
-				System.out.println("Field number "+ i+" is " + Field_Name);
 			} catch (NullPointerException ds) {
 
-				System.out.println("Exitingloop");
 				exit_loop = 5;
 			}
 
 			if (exit_loop < 1) {
-				
-				
+
 				driver.switchTo().defaultContent();
-				
+
 				driver.switchTo().frame("01NA0000000aPXw");
 
 				driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 				try {
 					String ab = driver.findElement(By.xpath("//label[(text()='" + Field_Name + "')]")).getText();
-					System.out.println("The field " + ab+ "is present in the page");
+					System.out.println(ab);
 					rownum1.createCell(j).setCellValue("PASS");
 
 				} catch (NoSuchElementException fd)
 
 				{
-						System.out.println("The field " + Field_Name+ " is not present in the page");
-						rownum1.createCell(j).setCellValue("FAIL");
-					}
+					rownum1.createCell(j).setCellValue("FAIL");
 				}
-			
+			}
+
 			i++;
 		} while (exit_loop != 5);
 
 		// }
 		// }while (exec_end != 5);
 
-		System.out.println("Execution ended no more fields");
 
 		FileOutputStream file1 = new FileOutputStream(xlPath);
 

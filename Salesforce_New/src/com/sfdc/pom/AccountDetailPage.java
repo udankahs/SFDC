@@ -54,47 +54,27 @@ public class AccountDetailPage extends BasePage {
 		this.driver = driver;
 	}
 
-	public void AccountDetailVerification(String AccountName, String xlPath,
-			int j) throws InterruptedException, IOException,
+	public void AccountDetailVerification(String AccountName, String xlPath,int j, String sheetName) throws InterruptedException, IOException,
 			InvalidFormatException {
 
 		FileInputStream fis = new FileInputStream(xlPath);
 
 		Workbook wb = WorkbookFactory.create(fis);
-		Sheet s1 = wb.getSheet("Fields Repository");
+		Sheet s1 = wb.getSheet(sheetName);
 
 		exit_loop = 0;
 		exec_end = 0;
 		int i = 0;
 
 		row_account = s1.getRow(i);
-		/*
-		 * if(counter>0) {
-		 * 
-		 * driver.findElement(By.xpath("//a[contains(text(), 'My Accounts')]")).
-		 * click();
-		 * 
-		 * driver.switchTo().frame("itarget");
-		 * 
-		 * }
-		 */
 
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
 		j++;
 
-		// try {
-		// Account_Name
-		// =row_account.getCell(j).getStringCellValue();}catch(NullPointerException
-		// fsf){exec_end=5;}
-
-		// if(exec_end!=5)
-		// {
-
 		driver.findElement(By.xpath(".//*[@id='bodyCell']/div[3]"));
 
-		((JavascriptExecutor) driver).executeScript(
-				"arguments[0].style.backgroundColor='yellow';", AccountDetail);
+		((JavascriptExecutor) driver).executeScript("arguments[0].style.backgroundColor='yellow';", AccountDetail);
 
 		AccountRecordType.click();
 
@@ -103,7 +83,7 @@ public class AccountDetailPage extends BasePage {
 		File scrFile = ((TakesScreenshot) driver)
 				.getScreenshotAs(OutputType.FILE);
 
-		String filepath = "D://Selenium//Screenshots" + AccountName+ ".png";
+		String filepath = "D://Selenium//Screenshots" + AccountName + ".png";
 
 		FileUtils.copyFile(scrFile, new File(filepath));
 
@@ -131,17 +111,14 @@ public class AccountDetailPage extends BasePage {
 			}
 		} while (iterator1.hasNext());
 
-		System.out.println("AccountName" + AccountName);
 
 		do {
 
 			rownum1 = (Row) s1.getRow(i);
 			try {
 				Field_Name = rownum1.getCell(1).getStringCellValue();
-				System.out.println("Field number "+ i+" is " + Field_Name);
 			} catch (NullPointerException ds) {
 
-				System.out.println("Exitingloop");
 				exit_loop = 5;
 			}
 
@@ -150,8 +127,8 @@ public class AccountDetailPage extends BasePage {
 				driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 				try {
 					String ab = driver.findElement(
-							By.xpath("//td[(text()='" + Field_Name + "')]")).getText();
-					System.out.println("The field " + ab+ "is present in the page");
+							By.xpath("//td[(text()='" + Field_Name + "')]"))
+							.getText();
 					rownum1.createCell(j).setCellValue("PASS");
 
 				} catch (NoSuchElementException fd)
@@ -161,24 +138,18 @@ public class AccountDetailPage extends BasePage {
 					try {
 
 						String ab = driver.findElement(
-								By.xpath("//span[(text()='" + Field_Name+ "')]")).getText();
-						System.out.println("The field " + ab+ "is present in the page");
+								By.xpath("//span[(text()='" + Field_Name
+										+ "')]")).getText();
 						rownum1.createCell(j).setCellValue("PASS");
 					} catch (NoSuchElementException sd)
 
 					{
-						System.out.println("The field " + Field_Name+ " is not present in the page");
 						rownum1.createCell(j).setCellValue("FAIL");
 					}
 				}
 			}
 			i++;
 		} while (exit_loop != 5);
-
-		// }
-		// }while (exec_end != 5);
-
-		System.out.println("Execution ended no more fields");
 
 		FileOutputStream file1 = new FileOutputStream(xlPath);
 

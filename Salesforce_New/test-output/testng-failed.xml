@@ -5,6 +5,7 @@
     <classes>
       <class name="com.sfdc.scripts.SFDC_AccountVerification">
         <methods>
+          <include name="postCondition"/>
           <include name="testSFDC_CreateAccount"/>
           <include name="preCondition"/>
         </methods>

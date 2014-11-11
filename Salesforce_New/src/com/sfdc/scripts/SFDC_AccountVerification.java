@@ -20,14 +20,13 @@ import com.sfdc.pom.MyTerritorySection;
 
 public class SFDC_AccountVerification extends SuperTestNG {
 	@Test
-	public void testSFDC_CreateAccount() throws InterruptedException,
-			NullPointerException, InvalidFormatException, IOException {
+	public void testSFDC_CreateAccount() throws InterruptedException,NullPointerException, InvalidFormatException, IOException 
+	{
 		LoginPage loginPage = new LoginPage(driver);
 		BasePage basePage = new BasePage(driver);
 		String xlPath = "D:/Selenium/test data/test data_Final.xlsx";
 
-		int rowCount = ExcelLib.getRowCount(xlPath,
-				"Login and Expected Accounts");
+		int rowCount = ExcelLib.getRowCount(xlPath,"Login and Expected Accounts");
 
 		for (int i = 1; i <= rowCount; i++) {
 
@@ -49,14 +48,12 @@ public class SFDC_AccountVerification extends SuperTestNG {
 
 			if (dummy < 1) {
 				for (j = 2; j <= colCount - 2; j++) {
-					// int colCount = ExcelLib.getColCount(xlPath,
-					// "Login and Expected Accounts", j);
-					String accountName = ExcelLib.getCellValue(xlPath,
-							"Login and Expected Accounts", i, j);
+					String accountName = ExcelLib.getCellValue(xlPath,"Login and Expected Accounts", i, j);
 
 					basePage.goToMyAccounts();
 
-					GotoAccountDetailPage gotoPage = new GotoAccountDetailPage(driver);
+					GotoAccountDetailPage gotoPage = new GotoAccountDetailPage(
+							driver);
 					gotoPage.gotoAccountDetail();
 
 					// String xp = "//a[contains(text(),'" + accountName +
@@ -70,14 +67,24 @@ public class SFDC_AccountVerification extends SuperTestNG {
 						temp = 0;
 						try {
 
-							WebElement account = wait.until(ExpectedConditions.elementToBeClickable(((By.xpath("//a[text()='" + accountName	+ "']")))));
+							WebElement account = wait.until(ExpectedConditions.elementToBeClickable(((By.xpath("//a[text()='" + accountName+ "']")))));
 
 							actions.moveToElement(account);
 							actions.click();
 							actions.perform();
 
 							AccountDetailPage accountVerification = new AccountDetailPage(driver);
-							accountVerification.AccountDetailVerification(accountName, xlPath, j);
+							accountVerification.AccountDetailVerification(accountName, xlPath, j, "Account Detail");
+							
+							accountVerification.AccountDetailVerification(accountName, xlPath, j, "Additional Information");
+
+							accountVerification.AccountDetailVerification(accountName, xlPath, j, "Contact Information and Pref");
+							
+							accountVerification.AccountDetailVerification(accountName, xlPath, j, "Primary Contact");
+							
+							accountVerification.AccountDetailVerification(accountName, xlPath, j, "Identification Numbers");
+
+							accountVerification.AccountDetailVerification(accountName, xlPath, j, "Home Office");
 							
 							MyTerritorySection territoryVerification = new MyTerritorySection(driver);
 							territoryVerification.MyTerritorySectionVerification(accountName, xlPath, j);
@@ -88,8 +95,6 @@ public class SFDC_AccountVerification extends SuperTestNG {
 						}
 					} while (temp == 5);
 
-					
-					
 				}
 
 				basePage.logout();

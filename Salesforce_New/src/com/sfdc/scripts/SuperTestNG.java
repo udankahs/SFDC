@@ -4,13 +4,12 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 public class SuperTestNG 
 {
 	public WebDriver driver;
-	
-	String xlPath ="D:/Selenium/Workspace/Udanka/test data_Final.xlsx";
 	
 	@BeforeMethod
 	public void preCondition()
@@ -19,9 +18,9 @@ public class SuperTestNG
 		driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 		driver.get("http://test.salesforce.com");
 	}
-//	@AfterMethod
-//	public void postCondition()
-//	{
-//	   driver.quit();	
-//	}
+	@AfterMethod
+	public void postCondition()
+	{
+	   driver.quit();	
+	}
 }
