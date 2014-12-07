@@ -48,17 +48,18 @@ public class AccountDetailPage extends BasePage {
 	@FindBy(xpath = ".//h2[text()='Account Detail']")
 	private WebElement AccountDetail;
 
-	public AccountDetailPage(WebDriver driver) {
+	public AccountDetailPage(WebDriver driver) 
+	{
 		super(driver);
 		PageFactory.initElements(driver, this);
 		this.driver = driver;
 	}
 
-	public void AccountDetailVerification(String AccountName, String xlPath,int j, String sheetName) throws InterruptedException, IOException,
+	public void AccountDetailVerification(String AccountName, String xlPath,
+			int j, String sheetName) throws InterruptedException, IOException,
 			InvalidFormatException {
 
 		FileInputStream fis = new FileInputStream(xlPath);
-
 		Workbook wb = WorkbookFactory.create(fis);
 		Sheet s1 = wb.getSheet(sheetName);
 
@@ -74,7 +75,8 @@ public class AccountDetailPage extends BasePage {
 
 		driver.findElement(By.xpath(".//*[@id='bodyCell']/div[3]"));
 
-		((JavascriptExecutor) driver).executeScript("arguments[0].style.backgroundColor='yellow';", AccountDetail);
+		((JavascriptExecutor) driver).executeScript(
+				"arguments[0].style.backgroundColor='yellow';", AccountDetail);
 
 		AccountRecordType.click();
 
@@ -110,7 +112,6 @@ public class AccountDetailPage extends BasePage {
 				}
 			}
 		} while (iterator1.hasNext());
-
 
 		do {
 

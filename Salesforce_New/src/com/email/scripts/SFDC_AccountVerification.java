@@ -1,4 +1,4 @@
-package com.sfdc.scripts;
+package com.email.scripts;
 
 import java.io.IOException;
 

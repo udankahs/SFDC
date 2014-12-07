@@ -1,4 +1,4 @@
-package com.sfdc.scripts;
+package com.email.scripts;
 
 import java.io.IOException;
 
@@ -19,7 +19,7 @@ import com.sfdc.pom.GotoAccountDetailPage;
 import com.sfdc.pom.LoginPage;
 import com.sfdc.pom.MyTerritorySection;
 
-public class SFDC_AccountVerification extends iREPSuperTestNG {
+public class PasswordResets extends iREPSuperTestNG {
 	@Test
 	public void testSFDC_CreateAccount() throws InterruptedException,NullPointerException, InvalidFormatException, IOException 
 	{
