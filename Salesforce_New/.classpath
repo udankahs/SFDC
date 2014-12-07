@@ -11,5 +11,15 @@
 	<classpathentry kind="lib" path="D:/Selenium/selenium-server-standalone-2.44.0.jar"/>
 	<classpathentry kind="lib" path="D:/Selenium/selenium-support-2.8.0.jar"/>
 	<classpathentry kind="lib" path="D:/Selenium/xmlbeans-2.3.0.jar"/>
+	<classpathentry kind="lib" path="D:/Selenium/Jar Files/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="D:/Selenium/Jar Files/poi-3.10.1-20140818.jar"/>
+	<classpathentry kind="lib" path="D:/Selenium/Jar Files/poi-examples-3.10.1-20140818.jar"/>
+	<classpathentry kind="lib" path="D:/Selenium/Jar Files/poi-excelant-3.10.1-20140818.jar"/>
+	<classpathentry kind="lib" path="D:/Selenium/Jar Files/selenium-server-standalone-2.44.0.jar"/>
+	<classpathentry kind="lib" path="D:/Selenium/Jar Files/stax-api-1.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/Selenium/Jar Files/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="D:/Selenium/Jar Files/poi-ooxml-3.10.1-20140818.jar"/>
+	<classpathentry kind="lib" path="D:/Selenium/Jar Files/poi-ooxml-schemas-3.10.1-20140818.jar"/>
+	<classpathentry kind="lib" path="D:/Selenium/Jar Files/poi-scratchpad-3.10.1-20140818.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
