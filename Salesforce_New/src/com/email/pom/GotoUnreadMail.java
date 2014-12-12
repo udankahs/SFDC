@@ -5,16 +5,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class GotoUnreadMail extends BasePage {
-
+public class GotoUnreadMail 
+{
 	@FindBy(xpath = "//span[@id=('_ariaId_68')]")
 	private WebElement unread;
 
 	@FindBy(xpath = "//a[2]")
 	private WebElement pswRestLink;
 	
-	public GotoUnreadMail(WebDriver driver) {
-		super(driver);
+	public GotoUnreadMail(WebDriver driver) 
+	{
 		PageFactory.initElements(driver, this);
 	}
 
